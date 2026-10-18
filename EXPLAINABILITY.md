@@ -1,34 +1,37 @@
 # Explainability and Decision Record
 
 ## Purpose
-Detect structural and selected heuristic issues in software localization files, with evidence tied to locale and message key.
 
-## Inputs and Data Sources
-Inputs are local JSON objects mapping message keys to strings, or CSV files with `key`, `locale`, and `value` columns. No external source is queried.
+The Software Localization QA Agent checks software localization files for structural errors and selected localization quality risks. It reports findings with evidence so a human reviewer can investigate them.
 
-## Decision and Reasoning
-Checks include file shape, empty values, duplicate CSV keys, key parity, common placeholder-token parity, HTML-like tag parity, whitespace differences, suspicious exact matches, and selected Unicode control characters. Findings include a rule ID, severity, message, and key/locale evidence where available.
+## Decision
 
-## Severity and Prioritization
-- `error`: malformed input, duplicate keys, missing/extra keys, or placeholder/markup mismatches.
-- `warning`: empty translations, suspicious exact source-target matches, whitespace differences, or unusual Unicode characters.
-- `info`: checks completed and counts.
-- Heuristic warnings are signals for review, not proof that a translation is wrong.
+The agent decides which findings to report by applying deterministic validation rules to the supplied localization files. It compares message keys, placeholder tokens, HTML-like tags, whitespace, empty values, duplicate CSV keys, suspicious exact matches, and selected Unicode characters. Each finding includes a rule identifier, severity, and relevant key or locale evidence when available. Heuristic warnings indicate items for review and do not prove that a translation is incorrect.
+
+## Inputs
+
+The agent accepts local JSON objects mapping message keys to strings, or CSV files containing key, locale, and value columns. The input files supplied by the user are the data sources for its checks. The agent does not query external services or download translation data. Identical inputs and options produce the same structural-check findings.
+
+## Limits
+
+The agent cannot determine whether a translation preserves the intended meaning, grammar, tone, cultural appropriateness, or legal context. It does not translate text, guarantee linguistic correctness, or validate every framework-specific localization format. Placeholder detection covers common patterns, so custom placeholder syntax may require additional configuration. A qualified human reviewer must assess linguistic quality, pluralization, formatting, accessibility, and user-interface fit before release.
 
 ## Outputs and Evidence
-The JSON report includes status, files inspected, checks executed, severity counts, findings, and limitations. Findings include stable rule IDs and key/locale fields when available.
+
+The agent generates a JSON report containing the status, inspected files, checks executed, severity counts, findings, and limitations. Findings include stable rule identifiers and key or locale evidence where available. The report supports review but is not a release approval.
+
+## Severity and Prioritization
+
+Errors include malformed input, duplicate keys, missing or extra keys, and placeholder or markup mismatches. Warnings include empty translations, suspicious exact matches, whitespace differences, and unusual Unicode characters. Informational findings describe completed checks and counts. Heuristic warnings require human review rather than automatic rejection.
 
 ## Human Review
-A qualified reviewer must assess meaning, grammar, tone, cultural appropriateness, terminology, pluralization, date/number formatting, text expansion, UI fit, accessibility, and legal/product context.
 
-## Limits and Constraints
-The agent does not translate text, access external services, infer intended meaning, validate every framework-specific message format, or guarantee linguistic correctness. Placeholder syntax is recognized through common patterns and may need configuration for custom frameworks.
-
-## Determinism and Reproducibility
-Given identical input files and options, structural checks produce the same findings. Checks do not depend on network access or probabilistic inference.
+A qualified reviewer should assess meaning, grammar, tone, cultural appropriateness, terminology, pluralization, date and number formatting, text expansion, interface fit, accessibility, and legal or product context. Structural validation alone cannot establish that a translation is correct.
 
 ## Safety and Data Handling
-Files are processed locally. Reports avoid reproducing full values by default. Users should not include secrets in localization resources.
+
+The agent processes supplied files locally and does not access external services. Reports avoid reproducing full values by default. Users should not include secrets in localization resources.
 
 ## Non-Goals
-This agent is not a translation engine, a substitute for native-speaker review, or a release approval system.
+
+The agent is not a translation engine or a substitute for native-speaker review. It does not automatically rewrite translations or approve software releases.
