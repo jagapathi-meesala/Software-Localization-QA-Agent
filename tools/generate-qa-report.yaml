@@ -1,0 +1,17 @@
+name: generate-qa-report
+description: Format localization QA findings into a JSON report with severity counts and limitations.
+version: 1.0.0
+input_schema:
+  type: object
+  properties:
+    findings: {type: array, items: {type: object}}
+    files_inspected: {type: array, items: {type: string}}
+    checks_executed: {type: array, items: {type: string}}
+    output_path: {type: string}
+  required: [findings, files_inspected, checks_executed]
+output_schema:
+  type: object
+  properties:
+    status: {type: string}
+    summary: {type: object}
+    findings: {type: array}

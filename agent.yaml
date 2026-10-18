@@ -1,0 +1,19 @@
+spec_version: "0.1.0"
+name: software-localization-qa-agent
+version: 1.0.0
+description: Validate localized software strings for missing keys, placeholder mismatches, markup differences, and common localization quality risks.
+author: agent-builder
+license: MIT
+skills:
+  - localization-file-validation
+  - localization-linguistic-qa
+  - localization-reporting
+tools:
+  - validate-localization-files
+  - compare-locales
+  - generate-qa-report
+runtime:
+  max_turns: 12
+  temperature: 0.1
+  timeout: 60
+tags: [localization, l10n, i18n, quality-assurance]

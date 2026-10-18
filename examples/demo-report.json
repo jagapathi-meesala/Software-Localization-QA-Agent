@@ -1,0 +1,67 @@
+{
+  "agent": "software-localization-qa-agent",
+  "status": "review_required",
+  "files_inspected": [
+    "examples/en.json",
+    "examples/fr.json"
+  ],
+  "checks_executed": [
+    "json_shape",
+    "key_parity",
+    "placeholder_parity",
+    "html_tag_parity",
+    "whitespace",
+    "empty_values",
+    "unicode_controls",
+    "exact_match_heuristic"
+  ],
+  "summary": {
+    "total_findings": 3,
+    "errors": 3,
+    "warnings": 0,
+    "info": 0
+  },
+  "findings": [
+    {
+      "rule_id": "LOC-PLACEHOLDER-001",
+      "severity": "error",
+      "message": "Placeholder tokens differ from source.",
+      "key": "greeting.user",
+      "locale": "target",
+      "evidence": {
+        "source": {
+          "{name}": 1
+        },
+        "target": {
+          "{user}": 1
+        }
+      }
+    },
+    {
+      "rule_id": "LOC-MARKUP-001",
+      "severity": "error",
+      "message": "HTML-like tags differ from source.",
+      "key": "legal.notice",
+      "locale": "target",
+      "evidence": {
+        "source": {
+          "<b>": 1,
+          "</b>": 1
+        },
+        "target": {}
+      }
+    },
+    {
+      "rule_id": "LOC-KEY-002",
+      "severity": "error",
+      "message": "Target contains a key absent from source locale.",
+      "key": "extra.key",
+      "locale": "target"
+    }
+  ],
+  "limitations": [
+    "Structural checks do not prove translation accuracy or cultural appropriateness.",
+    "Placeholder recognition covers common patterns and may not cover custom frameworks.",
+    "Pluralization, ICU MessageFormat semantics, UI fit, and terminology require dedicated checks or human review."
+  ]
+}

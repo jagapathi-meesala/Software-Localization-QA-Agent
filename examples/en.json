@@ -1,0 +1,6 @@
+{
+  "welcome.title": "Welcome",
+  "greeting.user": "Hello {name}",
+  "cart.items": "You have %s items",
+  "legal.notice": "Read <b>carefully</b>"
+}

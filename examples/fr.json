@@ -1,0 +1,7 @@
+{
+  "welcome.title": "Bienvenue",
+  "greeting.user": "Bonjour {user}",
+  "cart.items": "Vous avez %s articles",
+  "legal.notice": "Lisez attentivement",
+  "extra.key": "Texte suppl\u00e9mentaire"
+}

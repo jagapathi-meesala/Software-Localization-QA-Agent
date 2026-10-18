@@ -1,0 +1,11 @@
+source_locale: en
+checks:
+  key_parity: true
+  placeholders: true
+  markup: true
+  whitespace: true
+  empty_values: true
+  exact_match_warning: true
+  unicode_controls: true
+report:
+  include_value_snippets: false

@@ -1,0 +1,17 @@
+name: compare-locales
+description: Compare JSON locale dictionaries or source and target locales in one CSV for key, placeholder, markup, whitespace, and heuristic issues.
+version: 1.0.0
+input_schema:
+  type: object
+  properties:
+    source_or_csv: {type: string, description: Path to source JSON or CSV containing key, locale, value columns.}
+    target: {type: string, description: Optional target JSON path; omit for CSV locale comparison.}
+    source_locale: {type: string}
+    target_locale: {type: string}
+  required: [source_or_csv]
+output_schema:
+  type: object
+  properties:
+    status: {type: string}
+    summary: {type: object}
+    findings: {type: array}

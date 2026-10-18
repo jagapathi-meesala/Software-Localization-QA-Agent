@@ -1,0 +1,7 @@
+key,locale,value
+welcome.title,en,Welcome
+welcome.title,fr,Bienvenue
+greeting.user,en,Hello {name}
+greeting.user,fr,Bonjour {name}
+cart.items,en,You have %s items
+cart.items,fr,Vous avez %s articles

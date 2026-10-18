@@ -1,0 +1,15 @@
+name: validate-localization-files
+description: Validate a flat JSON localization dictionary for shape, empty values, whitespace, and suspicious Unicode characters.
+version: 1.0.0
+input_schema:
+  type: object
+  properties:
+    file_path: {type: string, description: Path to a user-supplied local JSON file.}
+    locale: {type: string, description: Locale identifier for findings.}
+  required: [file_path]
+output_schema:
+  type: object
+  properties:
+    status: {type: string}
+    summary: {type: object}
+    findings: {type: array}
